@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add_blog_post"
+    android:background="@color/black">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:id="@+id/toolbar"
+        app:titleTextColor="@color/white"/>
+    
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@color/black"
+        android:id="@+id/progress"/>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Blog"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/progress"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="Blog Title ..."
+        android:drawableLeft="@drawable/pen_image"
+        android:textColorHint="@color/white"
+        android:textSize="24dp"
+        android:paddingLeft="40dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/textView10"
+        android:id="@+id/blog_title"/>
+
+    <ImageView
+        android:layout_width="300sp"
+        android:layout_height="300sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/blog_title"
+        android:layout_marginTop="40dp"
+        android:id="@+id/image_view"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/select_image"
+        android:layout_below="@+id/image_view"
+        android:text="Select Image"/>
+
+    <com.google.android.material.button.MaterialButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/upload_image"
+    android:layout_below="@+id/select_image"
+    android:text="Upload"
+        android:enabled="false"/>
+
+
+</RelativeLayout>

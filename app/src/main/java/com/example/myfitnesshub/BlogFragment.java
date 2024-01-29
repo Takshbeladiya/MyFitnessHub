@@ -1,5 +1,6 @@
 package com.example.myfitnesshub;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
@@ -56,7 +58,7 @@ public class BlogFragment extends Fragment {
     SearchView searchView;
 
 //    SearchView searchView;
-
+    MaterialButton button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,9 +72,19 @@ public class BlogFragment extends Fragment {
 
         recycle_view_data();
 
+        add_blog_event();
         return view;
     }
 
+    public void add_blog_event(){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), add_blog_post.class);
+                startActivity(intent);
+            }
+        });
+    }
     public void recycle_view_data(){
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

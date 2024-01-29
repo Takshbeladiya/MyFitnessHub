@@ -15,24 +15,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Post Blog"
+            android:text="Welcome to Blogs"
+            android:textColor="@color/white"
             android:textAlignment="center"
-            android:textSize="26dp"
+            android:textSize="29dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.04" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
-            android:paddingLeft="27dp"
-            android:paddingRight="13dp"
-            android:layout_width="409dp"
-            android:layout_height="500dp"
+            android:layout_width="407dp"
+            android:layout_height="519dp"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
+            android:paddingLeft="27dp"
+            android:paddingRight="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -40,29 +41,37 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal">
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/white_search_icon"
+            android:hint="Search Blog ..."
+            android:paddingLeft="20dp"
+            android:textColor="@color/grey"
+            android:textColorHint="@color/white"
+            android:textSize="22dp"
+            app:layout_constraintBottom_toBottomOf="@+id/recycle_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.126" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:src="@drawable/search_icon" />
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:hint="Search ..."
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:layout_weight="1"
-                android:background="#00ffffff"
-                android:gravity="center_vertical" />
-
-       </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/neon"
+            android:clickable="true"
+            android:src="@drawable/add_blog_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.942" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
