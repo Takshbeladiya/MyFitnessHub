@@ -1,1 +1,1 @@
-<h1>MyFitnessHut Project</h1>
+<h1>MyFitnessHub Project</h1>
