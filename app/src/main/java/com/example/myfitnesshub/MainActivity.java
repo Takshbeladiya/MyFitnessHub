@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                                     String password_temp = data.child("password").getValue().toString();
 
                                     if(email.equals(email_temp) && password.equals(password_temp)){
+                                        GlobalVariable.name = email;
                                         Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this, Home_page.class);
                                         startActivity(intent);
