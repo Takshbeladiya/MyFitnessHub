@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    tools:openDrawer="left">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_bmi"
+            android:icon="@drawable/bmi_image"
+            android:title="Check BMI"/>
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/contact_image"
+            android:title="Contact Us"/>
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/about_us_image"
+            android:title="About us"/>
+    </group>
+</menu>

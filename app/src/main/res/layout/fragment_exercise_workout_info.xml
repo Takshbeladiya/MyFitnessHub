@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".exercise_workout_info"
+    android:background="@color/black">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="30dp"
+            android:id="@+id/web_view"
+            android:backgroundTint="@color/black"/>
+
+        <TextView
+            android:id="@+id/title_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:id="@+id/description_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="description"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</FrameLayout>

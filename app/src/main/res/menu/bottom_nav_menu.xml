@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        android:id="@+id/home"/>
+    <item android:title="Exercise"
+        android:icon="@drawable/baseline_directions_run_24"
+        android:id="@+id/exercise"/>
+    <item android:title="Diet"
+        android:icon="@drawable/baseline_food_bank_24"
+        android:id="@+id/diet"/>
+    <item android:title="Blog"
+        android:icon="@drawable/baseline_mode_comment_24"
+        android:id="@+id/blog"/>
+    <item android:title="Shopping"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        android:id="@+id/shopping"/>
+</menu>

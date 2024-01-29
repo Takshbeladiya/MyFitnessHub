@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Registration_page">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="150dp"
+            android:padding="20dp">
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:id="@+id/email_editText"
+                android:hint="Enter Email"
+                android:padding="8dp">
+            </EditText>
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:id="@+id/password_editText"
+                android:hint="Enter Password"
+                android:padding="8dp"
+                android:layout_marginTop="20dp">
+            </EditText>
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:id="@+id/age_editText"
+                android:hint="Enter Age"
+                android:padding="8dp"
+                android:layout_marginTop="20dp">
+            </EditText>
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:id="@+id/height_editText"
+                android:hint="Enter Height in cm"
+                android:padding="8dp"
+                android:layout_marginTop="20dp">
+            </EditText>
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:id="@+id/weight_editText"
+                android:hint="Enter Weight in kg"
+                android:padding="8dp"
+                android:layout_marginTop="20dp">
+            </EditText>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/submit_button"
+                android:text="submit"
+                android:layout_marginTop="20dp">
+            </Button>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:text="Already Registered? Login Page"
+                android:clickable="true"
+                android:onClick="go_back_to_login"
+                android:layout_marginTop="20dp">
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

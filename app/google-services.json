@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "113022415704",
+    "project_id": "myfitnesshub-dfa77",
+    "storage_bucket": "myfitnesshub-dfa77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113022415704:android:7a8b1fb73c928e141a2b2d",
+        "android_client_info": {
+          "package_name": "com.example.myfitnesshub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5dGFaBbRdv1ElQEAr8AsZc2orEpjQJEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

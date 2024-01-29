@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:id="@+id/rec_card"
+    android:layout_marginBottom="15dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/base_card"
+        android:background="@color/dark_grey"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/blog_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/dark_grey"
+            android:src="@drawable/baseline_food_bank_24"/>
+
+        <TextView
+            android:id="@+id/blog_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blog from "
+            android:textColor="@color/grey_font"
+            android:paddingLeft="15dp"
+            android:layout_below="@+id/blog_image"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/blog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:textSize="23dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white"
+            android:layout_below="@+id/blog_from"
+            android:layout_marginTop="5dp"/>
+
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
