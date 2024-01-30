@@ -46,10 +46,11 @@ public class add_blog_post extends AppCompatActivity {
     Toolbar toolbar;
     public String photoUrl;
     Bitmap bitmap;
-    EditText blog_text;
+    EditText blog_text, blog_description;
 
     DocumentReference DocId;
 
+    String description;
     FirebaseDatabase db;
     Task<Void> reference;
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -138,12 +139,15 @@ public class add_blog_post extends AppCompatActivity {
 
     }
 
+
     public void upload_blog_data(){
         blog_text = findViewById(R.id.blog_title);
+        blog_description = findViewById(R.id.blog_description);
         String current_user_name = GlobalVariable.name;
         String blog_string = blog_text.getText().toString();
+        String description = blog_description.getText().toString();
 
-        add_post_model blog_model = new add_post_model(blog_string, photoUrl, current_user_name);
+        add_post_model blog_model = new add_post_model(blog_string, photoUrl, current_user_name, description);
         reference = db.getReference("blog").child(blog_string).setValue(blog_model).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

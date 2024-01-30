@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +31,18 @@ public class blog_adapter extends FirebaseRecyclerAdapter<blog_model, blog_adapt
                 .placeholder(com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_dark)
                 .error(R.drawable.error_image)
                 .into(holder.blog_image);
+
+        holder.base_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.blog_wrapper, new blog_post_info(model.getTitle(), model.getImage_url(), model.getUser_name()))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
     }
 
