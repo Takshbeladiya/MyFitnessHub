@@ -102,7 +102,6 @@ public class add_blog_post extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadImage();
-//                upload_blog_data();
             }
         });
     }
@@ -112,13 +111,13 @@ public class add_blog_post extends AppCompatActivity {
         myRef.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
                 // uploading image to firebase database
                 myRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         if(uri != null){
                             photoUrl = uri.toString();
-//                            Toast.makeText(add_blog_post.this, photoUrl.toString(), Toast.LENGTH_SHORT).show();
                             upload_blog_data();
                         }
                     }
@@ -139,19 +138,6 @@ public class add_blog_post extends AppCompatActivity {
 
     }
 
-
-//    user_data users_data = new user_data(email, password, age, height, weight, calories);
-//    db = FirebaseDatabase.getInstance();
-//    reference = db.getReference("user_data");
-//                    reference.child(email).setValue(users_data).addOnCompleteListener(new OnCompleteListener<Void>() {
-//        @Override
-//        public void onComplete(@NonNull Task<Void> task) {
-//            Toast.makeText(Registration_page.this, "Registration Success", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(Registration_page.this, Home_page.class);
-//            startActivity(intent);
-//        }
-//    });
-
     public void upload_blog_data(){
         blog_text = findViewById(R.id.blog_title);
         String current_user_name = GlobalVariable.name;
@@ -163,7 +149,7 @@ public class add_blog_post extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     if(task.isSuccessful()){
-                        Toast.makeText(add_blog_post.this, "sucecs", Toast.LENGTH_LONG).show();
+                        Toast.makeText(add_blog_post.this, "blog Added", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -175,27 +161,4 @@ public class add_blog_post extends AppCompatActivity {
         });
 
     }
-//    public void upload_blog_data(){
-//        blog_text = findViewById(R.id.blog_title);
-//        String current_user_name = GlobalVariable.name;
-//        String blog_string = blog_text.getText().toString();
-//
-//        DocumentReference documentReference = firestore.collection("blog").document();
-//        add_post_model blog_model = new add_post_model(blog_string, photoUrl, current_user_name);
-//        documentReference.set(blog_model, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if(task.isSuccessful()){
-//                    if(task.isSuccessful()){
-//                        Toast.makeText(add_blog_post.this, "sucecs", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(add_blog_post.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 }

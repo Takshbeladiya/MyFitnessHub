@@ -24,7 +24,7 @@ public class blog_adapter extends FirebaseRecyclerAdapter<blog_model, blog_adapt
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull blog_model model) {
         holder.blog_title.setText(model.getTitle());
-
+        holder.blog_from.setText("Blog from " + model.getUser_name());
         Glide.with(holder.blog_image.getContext())
                 .load(model.getImage_url())
                 .placeholder(com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_dark)
@@ -44,7 +44,7 @@ public class blog_adapter extends FirebaseRecyclerAdapter<blog_model, blog_adapt
 
         RelativeLayout base_card;
         ImageView blog_image;
-        TextView blog_title;
+        TextView blog_title, blog_from;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -52,6 +52,7 @@ public class blog_adapter extends FirebaseRecyclerAdapter<blog_model, blog_adapt
             blog_image = (ImageView)itemView.findViewById(R.id.blog_image);
             base_card = itemView.findViewById(R.id.base_card);
             blog_title = itemView.findViewById(R.id.blog_title);
+            blog_from = itemView.findViewById(R.id.blog_from);
         }
     }
 }
