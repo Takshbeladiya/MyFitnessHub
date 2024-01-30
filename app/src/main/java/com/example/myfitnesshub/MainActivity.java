@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    CustomerDatabaseClass databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         EditText password_box = findViewById(R.id.editTextTextPassword);
         Button btn_login = findViewById(R.id.button);
 
-        databaseHelper = new CustomerDatabaseClass(this);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override

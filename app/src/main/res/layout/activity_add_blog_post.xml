@@ -53,7 +53,7 @@
         android:layout_marginTop="40dp"
         android:id="@+id/image_view"/>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -61,14 +61,14 @@
         android:layout_below="@+id/image_view"
         android:text="Select Image"/>
 
-    <com.google.android.material.button.MaterialButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/upload_image"
-    android:layout_below="@+id/select_image"
-    android:text="Upload"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/upload_image"
+        android:layout_below="@+id/select_image"
+        android:text="Upload"
         android:enabled="false"/>
 
 

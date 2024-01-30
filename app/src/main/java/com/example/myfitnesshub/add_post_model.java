@@ -1,18 +1,17 @@
 package com.example.myfitnesshub;
 
-public class blog_model {
+public class add_post_model {
+    String title, image_url, user_name;
 
-    String title, image_url;
+    add_post_model(){
 
-    blog_model(){
-        //zero hour constructor for firebase
     }
 
-    public blog_model(String title, String image_url) {
+    public add_post_model(String title, String image_url, String user_name) {
         this.title = title;
         this.image_url = image_url;
+        this.user_name = user_name;
     }
-
 
     public String getTitle() {
         return title;
@@ -28,5 +27,13 @@ public class blog_model {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 }

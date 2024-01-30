@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
@@ -58,7 +59,7 @@ public class BlogFragment extends Fragment {
     SearchView searchView;
 
 //    SearchView searchView;
-    MaterialButton button;
+    FloatingActionButton button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class BlogFragment extends Fragment {
     }
 
     public void add_blog_event(){
+        button = view.findViewById(R.id.floatingActionButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
