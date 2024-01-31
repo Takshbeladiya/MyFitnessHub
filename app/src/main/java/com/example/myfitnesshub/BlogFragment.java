@@ -92,7 +92,8 @@ public class BlogFragment extends Fragment {
     }
     public void recycle_view_data(){
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManagerWrapper(getContext(), LinearLayoutManager.VERTICAL, false));
+
 
 
         FirebaseRecyclerOptions<blog_model> options =
@@ -100,7 +101,8 @@ public class BlogFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("blog"), blog_model.class)
                         .build();
 
-        search_view = (SearchView) view.findViewById(R.id.search_view);
+
+        searchView = (SearchView) view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -118,6 +120,8 @@ public class BlogFragment extends Fragment {
         mainAdapter = new blog_adapter(options);
         recyclerView.setAdapter(mainAdapter);
     }
+
+
 
     private void txtSearch(String Str){
         FirebaseRecyclerOptions<blog_model> options =
