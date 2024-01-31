@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class blog_adapter extends FirebaseRecyclerAdapter<blog_model, blog_adapter.myViewHolder> {
 
     public blog_adapter(@NonNull FirebaseRecyclerOptions<blog_model> options) {
+
         super(options);
     }
 

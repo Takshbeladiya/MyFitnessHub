@@ -1,25 +1,25 @@
 package com.example.myfitnesshub;
 
 public class add_post_model {
-    String title, image_url, user_name, description;
+    String title, image_url, user_name, blog_description;
 
     add_post_model(){
 
     }
 
-    public add_post_model(String title, String image_url, String user_name, String description) {
+    public add_post_model(String title, String image_url, String user_name, String blog_description) {
         this.title = title;
         this.image_url = image_url;
         this.user_name = user_name;
-        this.description = description;
+        this.blog_description = blog_description;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBlog_description() {
+        return blog_description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBlog_description(String blog_description) {
+        this.blog_description = blog_description;
     }
 
     public String getTitle() {

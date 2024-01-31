@@ -3,13 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".blog_post_info">
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hhghhghhg"
-        android:textAlignment="center"/>
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/blog_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/black"
+            android:src="@drawable/common_google_signin_btn_icon_dark"/>
+
+        <TextView
+            android:id="@+id/blog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Hello World"
+            android:textSize="22dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/blog_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Hello World"
+                android:textSize="17dp"
+                android:textColor="@color/white"
+                android:textAlignment="center"/>
+        </ScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>

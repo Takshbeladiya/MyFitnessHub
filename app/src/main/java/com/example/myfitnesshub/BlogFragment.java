@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.button.MaterialButton;
@@ -60,6 +61,8 @@ public class BlogFragment extends Fragment {
 
 //    SearchView searchView;
     FloatingActionButton button;
+
+    SearchView search_view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,7 +100,33 @@ public class BlogFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("blog"), blog_model.class)
                         .build();
 
+        search_view = (SearchView) view.findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                txtSearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                txtSearch(query);
+                return false;
+            }
+        });
+
         mainAdapter = new blog_adapter(options);
+        recyclerView.setAdapter(mainAdapter);
+    }
+
+    private void txtSearch(String Str){
+        FirebaseRecyclerOptions<blog_model> options =
+                new FirebaseRecyclerOptions.Builder<blog_model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("blog").orderByChild("title").startAt(Str).endAt(Str+"~"), blog_model.class)
+                        .build();
+
+        mainAdapter = new blog_adapter(options);
+        mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
     }
 

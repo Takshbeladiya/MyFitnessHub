@@ -99,6 +99,7 @@ public class exercise_workout_info extends Fragment {
         return view;
     }
 
+
     public void onBackPressed(){
         AppCompatActivity activity = (AppCompatActivity)getContext();
         activity.getSupportFragmentManager()
