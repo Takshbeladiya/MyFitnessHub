@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,11 +20,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BlogFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class BlogFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -58,11 +54,10 @@ public class BlogFragment extends Fragment {
     RecyclerView recyclerView;
     blog_adapter mainAdapter;
     SearchView searchView;
-
-//    SearchView searchView;
     FloatingActionButton button;
 
     SearchView search_view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,6 +81,7 @@ public class BlogFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), add_blog_post.class);
+                intent.putExtra("intent_from", "blog_fragment");
                 startActivity(intent);
             }
         });

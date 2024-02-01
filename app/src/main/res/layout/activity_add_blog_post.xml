@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".add_blog_post"
+    android:id="@+id/add_post_wrapper"
     android:background="@color/black">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -87,6 +88,16 @@
         android:layout_below="@+id/blog_description"
         android:text="Upload"
         android:enabled="false"/>
+
+    <Button
+        android:id="@+id/history_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="53dp"
+        android:text="History" />
 
 
 </RelativeLayout>

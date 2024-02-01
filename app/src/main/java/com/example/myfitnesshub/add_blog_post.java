@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -41,7 +45,7 @@ public class add_blog_post extends AppCompatActivity {
     FirebaseFirestore firestore;
     LinearProgressIndicator progressIndicator;
     Uri image;
-    Button select_image, upload_image;
+    Button select_image, upload_image, history_button;
     ImageView imageView;
     Toolbar toolbar;
     public String photoUrl;
@@ -89,6 +93,41 @@ public class add_blog_post extends AppCompatActivity {
         storageReference = firebaseStorage.getReference();
         db = FirebaseDatabase.getInstance();
 
+        blog_text = findViewById(R.id.blog_title);
+        blog_description = findViewById(R.id.blog_description);
+
+        Intent intent = getIntent();
+        if(intent.getStringExtra("intent_from").toString().equals("blog_update")){
+            String title = intent.getStringExtra("title");
+            // setting blog title if user come from update section
+            blog_text.setText(title);
+
+            // getting description of title
+            FirebaseDatabase.getInstance().getReference("blog").child(title).child("blog_description").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String description = snapshot.getValue().toString();
+
+                    // setting username in Edit Text of user name
+                    blog_description.setText(description);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // do not delete
+                }
+            });
+
+            // setting blog image if user come from update section
+            Glide.with(getApplicationContext()).load(intent.getStringExtra("image_url")).into(imageView);
+
+            // photo is already taken so button is enabled
+            upload_image.setEnabled(true);
+            Toast.makeText(add_blog_post.this, "update kar ", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(add_blog_post.this, "Add kar", Toast.LENGTH_SHORT).show();
+        }
 
         select_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +142,16 @@ public class add_blog_post extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadImage();
+            }
+        });
+
+        history_button = findViewById(R.id.history_button);
+
+        history_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(add_blog_post.this, blog_edit.class);
+                startActivity(intent);
             }
         });
     }
@@ -141,8 +190,6 @@ public class add_blog_post extends AppCompatActivity {
 
 
     public void upload_blog_data(){
-        blog_text = findViewById(R.id.blog_title);
-        blog_description = findViewById(R.id.blog_description);
         String current_user_name = GlobalVariable.name;
         String blog_string = blog_text.getText().toString();
         String description = blog_description.getText().toString();

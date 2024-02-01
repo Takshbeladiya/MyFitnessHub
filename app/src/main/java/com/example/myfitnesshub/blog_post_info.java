@@ -72,6 +72,7 @@ public class blog_post_info extends Fragment {
         blog_description = view.findViewById(R.id.blog_description);
         blog_image = view.findViewById(R.id.blog_image);
 
+
         FirebaseDatabase.getInstance().getReference().child("blog")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

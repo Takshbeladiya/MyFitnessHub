@@ -14,9 +14,12 @@
         android:theme="@style/Theme.MyFitnessHub"
         tools:targetApi="31">
         <activity
-            android:name=".add_blog_post"
-            android:theme="@style/Theme.Design.NoActionBar"
+            android:name=".blog_edit"
             android:exported="false" />
+        <activity
+            android:name=".add_blog_post"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".Home_page"
             android:exported="false"
