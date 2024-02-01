@@ -23,13 +23,11 @@ public class blog_edit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_edit);
 
-
-
         user_name = findViewById(R.id.user_name);
 
-//        curr_user = GlobalVariable.name;
-        curr_user = "taksh";
-        // after complete unplug this method to set user_name in title
+        curr_user = GlobalVariable.name;
+
+        // setting user_name in title
         user_name.setText(curr_user);
 
         recycle_view_data();

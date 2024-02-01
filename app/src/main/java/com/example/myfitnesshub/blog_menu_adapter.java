@@ -59,7 +59,7 @@ public class blog_menu_adapter extends FirebaseRecyclerAdapter<blog_model, blog_
                                 Intent intent = new Intent(view.getContext(), add_blog_post.class);
                                 intent.putExtra("intent_from", "blog_update");
                                 intent.putExtra("title", model.getTitle());
-                                intent.putExtra("image_url", model.getImage_url());
+//                                intent.putExtra("image_url", model.getImage_url());
                                 view.getContext().startActivity(intent);
 //                                Toast.makeText(view.getContext(), "Edit", Toast.LENGTH_SHORT).show();
                                 return true;

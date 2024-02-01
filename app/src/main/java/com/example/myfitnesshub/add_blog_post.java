@@ -98,8 +98,11 @@ public class add_blog_post extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent.getStringExtra("intent_from").toString().equals("blog_update")){
-            String title = intent.getStringExtra("title");
+            // photo is already taken so button is enabled
+            upload_image.setEnabled(true);
+
             // setting blog title if user come from update section
+            String title = intent.getStringExtra("title");
             blog_text.setText(title);
 
             // getting description of title
@@ -118,16 +121,38 @@ public class add_blog_post extends AppCompatActivity {
                 }
             });
 
-            // setting blog image if user come from update section
-            Glide.with(getApplicationContext()).load(intent.getStringExtra("image_url")).into(imageView);
 
-            // photo is already taken so button is enabled
-            upload_image.setEnabled(true);
-            Toast.makeText(add_blog_post.this, "update kar ", Toast.LENGTH_SHORT).show();
+
+            // setting blog image if user come from update section
+//            Glide.with(getApplicationContext()).load(intent.getStringExtra("image_url")).into(imageView);
+
+            upload_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // if person (who come from update section) click upload image after data is edited
+                    // First :- Data is deleted
+                    FirebaseDatabase.getInstance().getReference().child("blog").child(title).removeValue();
+
+                    // Second :- New Data is Uploaded
+                    uploadImage();
+
+                }
+            });
+            Toast.makeText(add_blog_post.this, "update Current Post", Toast.LENGTH_SHORT).show();
         }
         else{
-            Toast.makeText(add_blog_post.this, "Add kar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(add_blog_post.this, "Create Post", Toast.LENGTH_SHORT).show();
+
+            upload_btn();
         }
+
+
+        history_btn();
+        select_btn();
+
+    }
+
+    public void select_btn() {
 
         select_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +163,9 @@ public class add_blog_post extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void upload_btn() {
         upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,8 +173,10 @@ public class add_blog_post extends AppCompatActivity {
             }
         });
 
-        history_button = findViewById(R.id.history_button);
+    }
 
+    public void history_btn(){
+        history_button = findViewById(R.id.history_button);
         history_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
