@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class LinearLayoutManagerWrapper extends LinearLayoutManager {
 
-    // linear layout in recycle view contain error to fix just catch it and do noting
+    // linear layout in recycle view contain error to fix just catch it and do nothing
 
     public LinearLayoutManagerWrapper(Context context) {
         super(context);

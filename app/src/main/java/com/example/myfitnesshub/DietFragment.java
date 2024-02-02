@@ -1,8 +1,10 @@
 package com.example.myfitnesshub;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +59,8 @@ public class DietFragment extends Fragment {
     diet_adapter mainAdapter;
 
     TextView calorie_counter;
+
+    FloatingActionButton floating_btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +69,20 @@ public class DietFragment extends Fragment {
 
         recycle_view_data();
         calories_math();
+        floating_btn_data();
         return view;
+    }
+
+    public void floating_btn_data(){
+        floating_btn = view.findViewById(R.id.floatingActionButton);
+        floating_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), add_diet_food.class);
+                intent.putExtra("intent_from", "diet_fragment");
+                startActivity(intent);
+            }
+        });
     }
 
     public void calories_math(){
@@ -90,7 +108,7 @@ public class DietFragment extends Fragment {
 
     public void recycle_view_data(){
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManagerWrapper(getContext(), LinearLayoutManager.VERTICAL, false));
 
         FirebaseRecyclerOptions<diet_model> options =
                 new FirebaseRecyclerOptions.Builder<diet_model>()

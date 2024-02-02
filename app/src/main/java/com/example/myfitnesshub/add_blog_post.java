@@ -48,7 +48,7 @@ public class add_blog_post extends AppCompatActivity {
     Button select_image, upload_image, history_button;
     ImageView imageView;
     Toolbar toolbar;
-    public String photoUrl;
+    String photoUrl;
     Bitmap bitmap;
     EditText blog_text, blog_description;
 

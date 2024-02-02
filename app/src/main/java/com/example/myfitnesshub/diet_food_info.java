@@ -2,11 +2,20 @@ package com.example.myfitnesshub;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class diet_food_info extends Fragment {
 
@@ -47,12 +56,45 @@ public class diet_food_info extends Fragment {
         }
     }
 
+    TextView diet_title, diet_description, diet_cook_time, diet_calories;
+    ImageView diet_image;
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_diet_food_info, container,false);
+
+        diet_title = view.findViewById(R.id.diet_title);
+        diet_description = view.findViewById(R.id.diet_description);
+        diet_cook_time = view.findViewById(R.id.diet_cook_time);
+        diet_calories = view.findViewById(R.id.diet_calories);
+        diet_image = view.findViewById(R.id.diet_image);
+
+        diet_title.setText(title);
+        diet_calories.setText(String.valueOf(calories));
+        diet_cook_time.setText(cook_time);
+        Glide.with(view.getContext()).load(image_url).into(diet_image);
+
+        FirebaseDatabase.getInstance().getReference().child("diet")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            String title_data = data.child("title").getValue().toString();
+                            if(title_data.equals(title)){
+                                String description_data = data.child("description").getValue().toString();
+                                diet_description.setText(description_data);
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // do not delete
+                    }
+                });
 
         return view;
     }

@@ -57,7 +57,6 @@ public class Home_page extends AppCompatActivity implements NavigationView.OnNav
                     replace_fragment(new ShoppingFragment());
                     break;
             }
-
             return true;
         });
 

@@ -77,10 +77,9 @@ public class ExericseFragment extends Fragment {
         return view;
     }
 
-
     public void recycle_view_data(){
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManagerWrapper(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
         FirebaseRecyclerOptions<exercise_model> options =
