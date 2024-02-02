@@ -20,7 +20,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class blog_adapter extends FirebaseRecyclerAdapter<blog_model, blog_adapter.myViewHolder> {
 
     public blog_adapter(@NonNull FirebaseRecyclerOptions<blog_model> options) {
-
         super(options);
     }
 
