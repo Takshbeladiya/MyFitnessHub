@@ -27,15 +27,17 @@ public class exercise_workout_info extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    String title, description, video_url;
+    String title, description, video_url, db_reference;
     public exercise_workout_info() {
         // Required empty public constructor
     }
 
-    public exercise_workout_info(String title, String description) {
+
+    public exercise_workout_info(String title, String db_reference) {
         this.title = title;
-        this.description = description;
+        this.db_reference = db_reference;
     }
+
 
     public static exercise_workout_info newInstance(String param1, String param2) {
         exercise_workout_info fragment = new exercise_workout_info();
@@ -68,7 +70,7 @@ public class exercise_workout_info extends Fragment {
         WebView webView = view.findViewById(R.id.web_view);
 
 
-        FirebaseDatabase.getInstance().getReference().child("exercise")
+        FirebaseDatabase.getInstance().getReference().child(db_reference)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

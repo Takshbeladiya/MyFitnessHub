@@ -14,6 +14,9 @@
         android:theme="@style/Theme.MyFitnessHub"
         tools:targetApi="31">
         <activity
+            android:name=".diet_edit"
+            android:exported="false" />
+        <activity
             android:name=".add_diet_food"
             android:exported="false" />
         <activity

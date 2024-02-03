@@ -28,7 +28,7 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull exercise_model model) {
         holder.title_txt.setText(model.getTitle());
         holder.description_txt.setText(model.getDescription());
-
+        holder.exercise_calories.setText(String.valueOf(model.getCalories()));
         Glide.with(holder.card_img.getContext())
                 .load(model.getUrl())
                 .placeholder(com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_dark)
@@ -42,7 +42,7 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.exercise_wrapper, new exercise_workout_info(model.getTitle(), model.getDescription()))
+                        .replace(R.id.exercise_wrapper, new exercise_workout_info(model.getTitle(), "exercise"))
                         .addToBackStack(null)
                         .commit();
             }
@@ -62,7 +62,7 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
 
         RelativeLayout base_card;
         ImageView card_img;
-        TextView title_txt, description_txt;
+        TextView title_txt, description_txt, exercise_calories;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +71,7 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
             description_txt = itemView.findViewById(R.id.description_txt);
             title_txt = itemView.findViewById(R.id.title_txt);
             base_card = itemView.findViewById(R.id.base_card);
+            exercise_calories = itemView.findViewById(R.id.exercise_calories);
         }
     }
 }

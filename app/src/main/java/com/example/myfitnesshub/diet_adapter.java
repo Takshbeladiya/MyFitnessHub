@@ -15,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class diet_adapter extends FirebaseRecyclerAdapter<diet_model, diet_adapter.myViewHolder> {
 
@@ -22,12 +26,11 @@ public class diet_adapter extends FirebaseRecyclerAdapter<diet_model, diet_adapt
         super(options);
     }
 
-    int item_tot_count = 0;
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull diet_model model) {
         holder.diet_title.setText(model.getTitle());
         holder.diet_calories.setText(String.valueOf(model.getCalories()));
-        holder.diet_timer.setText(model.getCook_time());
+        holder.diet_timer.setText(model.getCook_time()+"m");
         Glide.with(holder.diet_image.getContext())
                 .load(model.getImage_url())
                 .placeholder(com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_dark)
@@ -46,21 +49,6 @@ public class diet_adapter extends FirebaseRecyclerAdapter<diet_model, diet_adapt
             }
         });
 
-        holder.add_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                item_tot_count += 1;
-            }
-        });
-
-        holder.remove_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                item_tot_count -= 1;
-            }
-        });
-
-        holder.item_count.setText(String.valueOf(item_tot_count));
     }
 
     @NonNull
@@ -74,8 +62,8 @@ public class diet_adapter extends FirebaseRecyclerAdapter<diet_model, diet_adapt
     public class myViewHolder extends RecyclerView.ViewHolder{
 
         ConstraintLayout base_card;
-        ImageView diet_image, add_btn, remove_btn;
-        TextView diet_title, diet_timer, diet_calories, item_count;
+        ImageView diet_image;
+        TextView diet_title, diet_timer, diet_calories;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,9 +73,6 @@ public class diet_adapter extends FirebaseRecyclerAdapter<diet_model, diet_adapt
             diet_title = itemView.findViewById(R.id.diet_title);
             diet_timer = itemView.findViewById(R.id.diet_timer);
             diet_calories = itemView.findViewById(R.id.diet_calories);
-            add_btn = itemView.findViewById(R.id.add_btn);
-            remove_btn = itemView.findViewById(R.id.remove_btn);
-            item_count = itemView.findViewById(R.id.item_count);
         }
     }
 }

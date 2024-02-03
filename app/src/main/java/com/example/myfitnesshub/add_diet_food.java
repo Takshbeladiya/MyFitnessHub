@@ -22,7 +22,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -85,10 +88,63 @@ public class add_diet_food extends AppCompatActivity {
         storageReference = firebaseStorage.getReference();
         db = FirebaseDatabase.getInstance();
 
+        Intent intent = getIntent();
+        if(intent.getStringExtra("intent_from").toString().equals("diet_update")){
+            // photo is already taken so button is enabled
+            upload_image.setEnabled(true);
+
+            // setting blog title if user come from update section
+            String title = intent.getStringExtra("title");
+            diet_title.setText(title);
+
+            // getting description of title
+            FirebaseDatabase.getInstance().getReference().child("diet").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot data : snapshot.getChildren()){
+                        String title_data = data.child("title").getValue().toString();
+                        if(title_data.equals(title)){
+                            diet_description.setText(data.child("description").getValue().toString());
+                            diet_cook_time.setText(data.child("cook_time").getValue().toString());
+                            diet_calories.setText(String.valueOf(data.child("calories").getValue().toString()));
+                            break;
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // do not delete
+                }
+            });
+
+            // setting blog image if user come from update section
+//            Glide.with(getApplicationContext()).load(intent.getStringExtra("image_url")).into(imageView);
+
+            upload_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // if person (who come from update section) click upload image after data is edited
+                    // First :- Data is deleted
+                    FirebaseDatabase.getInstance().getReference().child("diet").child(title).removeValue();
+
+                    // Second :- New Data is Uploaded
+                    uploadImage();
+
+                }
+            });
+            Toast.makeText(add_diet_food.this, "update Current Dishes", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(add_diet_food.this, "Create Dishes", Toast.LENGTH_SHORT).show();
+
+            upload_btn();
+        }
+
 
         history_btn();
         select_btn();
-        upload_btn();
+
     }
 
     public void select_btn() {
@@ -119,8 +175,8 @@ public class add_diet_food extends AppCompatActivity {
         history_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(add_blog_post.this, blog_edit.class);
-//                startActivity(intent);
+                Intent intent = new Intent(add_diet_food.this, diet_edit.class);
+                startActivity(intent);
             }
         });
     }

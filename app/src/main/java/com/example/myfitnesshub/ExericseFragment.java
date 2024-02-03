@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.fragment.app.Fragment;
@@ -134,18 +135,42 @@ public class ExericseFragment extends Fragment {
         main_slider = (ImageSlider) view.findViewById(R.id.image_slider);
         final List<SlideModel> remote_image = new ArrayList<>();
 
-        FirebaseDatabase.getInstance().getReference().child("Slider")
+        FirebaseDatabase.getInstance().getReference().child("exercise_plan")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                         // this loop will take all children from database itinerary
                         for(DataSnapshot data:snapshot.getChildren()){
+
                             remote_image.add(new SlideModel(data.child("url").getValue().toString(),
                                     data.child("title").getValue().toString(),
                                     ScaleTypes.FIT
                             ));
                         }
                         main_slider.setImageList(remote_image, ScaleTypes.FIT);
+
+                        main_slider.setItemClickListener(new ItemClickListener() {
+                            @Override
+                            public void onItemSelected(int i) {
+                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                activity.getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.exercise_wrapper, new exercise_workout_info(remote_image.get(i).getTitle().toString(), "exercise_plan"))
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+
+                            @Override
+                            public void doubleClick(int i) {
+                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                activity.getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.exercise_wrapper, new exercise_workout_info(remote_image.get(i).getTitle().toString(), "exercise_plan"))
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+                        });
                     }
 
                     @Override
