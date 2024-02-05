@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,8 +59,7 @@ public class DietFragment extends Fragment {
 
     diet_adapter mainAdapter;
 
-    TextView calorie_counter;
-
+    SearchView searchView;
     FloatingActionButton floating_btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +68,6 @@ public class DietFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_diet, container,false);
 
         recycle_view_data();
-        calories_math();
         floating_btn_data();
         return view;
     }
@@ -85,26 +84,7 @@ public class DietFragment extends Fragment {
         });
     }
 
-    public void calories_math(){
-        calorie_counter = view.findViewById(R.id.calorie_counter);
 
-//        String curr_user = GlobalVariable.name;
-        String curr_user = "taksh";
-        FirebaseDatabase.getInstance().getReference().child("user_data").child(curr_user).child("calories").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String user_calories = snapshot.getValue().toString();
-                calorie_counter.setText(user_calories + "+");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-    }
 
     public void recycle_view_data(){
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
@@ -115,7 +95,33 @@ public class DietFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("diet"), diet_model.class)
                         .build();
 
+        searchView = (SearchView) view.findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                txtSearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                txtSearch(query);
+                return false;
+            }
+        });
+
         mainAdapter = new diet_adapter(options);
+        recyclerView.setAdapter(mainAdapter);
+    }
+
+    private void txtSearch(String Str){
+        FirebaseRecyclerOptions<diet_model> options =
+                new FirebaseRecyclerOptions.Builder<diet_model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("diet").orderByChild("title").startAt(Str).endAt(Str+"~"), diet_model.class)
+                        .build();
+
+        mainAdapter = new diet_adapter(options);
+        mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
     }
 

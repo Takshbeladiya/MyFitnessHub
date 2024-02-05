@@ -50,6 +50,7 @@
             android:paddingLeft="20dp"
             android:textColor="@color/grey"
             android:textSize="22dp"
+            app:defaultQueryHint="Search Blog ..."
             app:layout_constraintBottom_toBottomOf="@+id/recycle_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

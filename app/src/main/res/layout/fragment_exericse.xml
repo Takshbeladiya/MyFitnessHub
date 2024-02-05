@@ -96,6 +96,7 @@
             android:id="@+id/search_view"
             android:layout_width="182dp"
             android:layout_height="41dp"
+            app:defaultQueryHint="Search Exercise ..."
             android:shape="rectangle"
             android:width="0.3dp"
             app:layout_constraintBottom_toBottomOf="parent"
