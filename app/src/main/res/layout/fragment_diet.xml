@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/diet_wrapper"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginRight="10dp"
     tools:context=".DietFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,25 +20,25 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/white_search_icon"
             android:paddingLeft="20dp"
-            app:defaultQueryHint="Search Food ..."
             android:textColor="@color/grey"
             android:textSize="22dp"
+            app:defaultQueryHint="Search Food ..."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.045" />
+            app:layout_constraintVertical_bias="0.023" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="546dp"
             android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="659dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calorie_counter"
+            app:layout_constraintTop_toBottomOf="@+id/search_view"
             app:layout_constraintVertical_bias="1.0" />
 
 
@@ -48,10 +51,10 @@
             android:src="@drawable/add_blog_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.892"
+            app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.952" />
+            app:layout_constraintVertical_bias="0.928" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

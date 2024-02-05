@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     // On clicking on New User ? User Redirected to Registration Page
     public void redirect_register_page(View v){
-//        Intent intent = new Intent(MainActivity.this, Registration_page.class);
-        Intent intent = new Intent(MainActivity.this, Home_page.class);
+        Intent intent = new Intent(MainActivity.this, Registration_page.class);
+//        Intent intent = new Intent(MainActivity.this, Home_page.class);
         startActivity(intent);
     }
 

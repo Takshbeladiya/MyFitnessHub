@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/textView12"
             android:layout_width="match_parent"
@@ -29,8 +28,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
-            android:layout_width="407dp"
-            android:layout_height="519dp"
+            android:layout_width="match_parent"
+            android:layout_height="593dp"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
             android:paddingLeft="27dp"
@@ -40,7 +39,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.993" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"

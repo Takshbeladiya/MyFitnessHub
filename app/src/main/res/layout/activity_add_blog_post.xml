@@ -6,21 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".add_blog_post"
     android:id="@+id/add_post_wrapper"
+    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
     android:background="@color/black">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:id="@+id/toolbar"
-        app:titleTextColor="@color/white"/>
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:background="@color/black"
-        android:id="@+id/progress"/>
+
 
     <TextView
         android:id="@+id/textView10"
@@ -30,12 +20,11 @@
         android:layout_marginTop="30dp"
         android:textSize="30dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:layout_below="@+id/progress"/>
+        android:textColor="@color/white"/>
 
     <ImageView
-        android:layout_width="250sp"
-        android:layout_height="200sp"
+        android:layout_width="200sp"
+        android:layout_height="150sp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView10"
         android:layout_marginTop="20dp"
@@ -48,36 +37,47 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/select_image"
         android:layout_below="@+id/image_view"
+        android:backgroundTint="@color/purple_500"
         android:text="Select Image"/>
 
 
     <EditText
         android:id="@+id/blog_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@+id/select_image"
         android:layout_marginTop="17dp"
         android:drawableLeft="@drawable/pen_image"
         android:hint="Blog Title ..."
         android:paddingLeft="40dp"
-        android:textColor="@color/white"
+        android:background="@null"
         android:textColorHint="@color/white"
-        android:textSize="22dp" />
+        android:fontFamily="sans-serif-light"
+        android:textSize="24dp"
+        android:radius="25dp"
+        android:shape="rectangle"
+        android:color="@color/neon"
+        android:textColor="@color/white"/>
 
 
 
     <EditText
         android:id="@+id/blog_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@+id/blog_title"
         android:layout_marginTop="17dp"
         android:drawableLeft="@drawable/pen_image"
         android:hint="Blog Description  ..."
         android:paddingLeft="40dp"
-        android:textColor="@color/white"
+        android:background="@null"
         android:textColorHint="@color/white"
-        android:textSize="16dp" />
+        android:fontFamily="sans-serif-light"
+        android:textSize="24dp"
+        android:radius="25dp"
+        android:shape="rectangle"
+        android:color="@color/neon"
+        android:textColor="@color/white"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -87,6 +87,8 @@
         android:id="@+id/upload_image"
         android:layout_below="@+id/blog_description"
         android:text="Upload"
+        android:backgroundTint="@color/neon"
+        android:textColor="@color/black"
         android:enabled="false"/>
 
     <Button
@@ -97,7 +99,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="51dp"
         android:layout_marginBottom="53dp"
-        android:text="History" />
+        android:text="History"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"/>
 
 
 </RelativeLayout>

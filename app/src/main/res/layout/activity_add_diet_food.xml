@@ -19,23 +19,17 @@
         android:id="@+id/toolbar"
         app:titleTextColor="@color/white"/>
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:background="@color/black"
-        android:id="@+id/progress"/>
 
     <TextView
         android:id="@+id/title_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Diet Food"
+        android:fontFamily="sans-serif"
         android:layout_marginTop="30dp"
         android:textSize="30dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:layout_below="@+id/progress"/>
+        android:textColor="@color/white"/>
 
     <ImageView
         android:layout_width="200sp"
@@ -58,58 +52,76 @@
     <EditText
         android:id="@+id/diet_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@+id/select_image"
         android:layout_marginTop="17dp"
         android:drawableLeft="@drawable/pen_image"
         android:hint="Diet Food Name ..."
         android:paddingLeft="40dp"
-        android:textColor="@color/white"
+        android:background="@null"
         android:textColorHint="@color/white"
-        android:textSize="16dp" />
+        android:fontFamily="sans-serif-light"
+        android:textSize="24dp"
+        android:radius="25dp"
+        android:shape="rectangle"
+        android:color="@color/neon"
+        android:textColor="@color/white"/>
 
 
 
     <EditText
         android:id="@+id/diet_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@+id/diet_title"
         android:layout_marginTop="17dp"
         android:drawableLeft="@drawable/pen_image"
         android:hint="Blog Description  ..."
         android:paddingLeft="40dp"
-        android:textColor="@color/white"
+        android:background="@null"
         android:textColorHint="@color/white"
-        android:textSize="16dp" />
+        android:fontFamily="sans-serif-light"
+        android:textSize="24dp"
+        android:radius="25dp"
+        android:shape="rectangle"
+        android:color="@color/neon"
+        android:textColor="@color/white"/>
 
     <EditText
         android:id="@+id/diet_calories"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@+id/diet_description"
         android:layout_marginTop="17dp"
         android:drawableLeft="@drawable/fire_icon"
         android:hint="Diet Calories  ..."
-        android:inputType="number"
-        android:digits="0123456789"
         android:paddingLeft="40dp"
-        android:textColor="@color/white"
+        android:background="@null"
         android:textColorHint="@color/white"
-        android:textSize="16dp" />
+        android:fontFamily="sans-serif-light"
+        android:textSize="24dp"
+        android:radius="25dp"
+        android:shape="rectangle"
+        android:color="@color/neon"
+        android:textColor="@color/white"/>
 
     <EditText
         android:id="@+id/diet_cook_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@+id/diet_calories"
         android:layout_marginTop="17dp"
         android:drawableLeft="@drawable/time_icon"
         android:hint="Diet Food Cook Time  ..."
         android:paddingLeft="40dp"
-        android:textColor="@color/white"
+        android:background="@null"
         android:textColorHint="@color/white"
-        android:textSize="16dp" />
+        android:fontFamily="sans-serif-light"
+        android:textSize="24dp"
+        android:radius="25dp"
+        android:shape="rectangle"
+        android:color="@color/neon"
+        android:textColor="@color/white" />
 
 
     <Button
@@ -120,12 +132,14 @@
         android:id="@+id/upload_image"
         android:layout_below="@+id/diet_cook_time"
         android:text="Upload"
-        android:enabled="false"/>
+        android:enabled="false"
+        android:backgroundTint="@color/neon"
+        android:textColor="@color/black"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/history_button"
         android:src="@drawable/edit_icon"
-        android:backgroundTint="@color/neon"
+        android:backgroundTint="@color/red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

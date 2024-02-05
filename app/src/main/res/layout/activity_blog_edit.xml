@@ -16,10 +16,11 @@
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User_name"
-            android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/white"/>
+            android:fontFamily="sans-serif"
+            android:text="User Name"
+            android:textColor="@color/white"
+            android:textSize="35dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="50dp"

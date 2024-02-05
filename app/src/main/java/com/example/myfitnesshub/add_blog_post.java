@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -77,11 +78,11 @@ public class add_blog_post extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_blog_post);
 
+
         FirebaseApp.initializeApp(add_blog_post.this);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        progressIndicator = findViewById(R.id.progress);
         imageView = findViewById(R.id.image_view);
         select_image = findViewById(R.id.select_image);
         upload_image = findViewById(R.id.upload_image);
