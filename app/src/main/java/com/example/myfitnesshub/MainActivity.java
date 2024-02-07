@@ -55,7 +55,13 @@ public class MainActivity extends AppCompatActivity {
                                     String email_temp = data.child("email").getValue().toString();
                                     String password_temp = data.child("password").getValue().toString();
 
-                                    if(email.equals(email_temp) && password.equals(password_temp)){
+                                    if(email.equals("")){
+                                        Toast.makeText(MainActivity.this, "Enter your Name", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else if(password.equals("")){
+                                        Toast.makeText(MainActivity.this, "Enter your Password", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else if(email.equals(email_temp) && password.equals(password_temp)){
                                         GlobalVariable.name = email;
                                         Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this, Home_page.class);
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                                         user_search_switch = 1;
                                     }
                                 }
-                                if(user_search_switch == 0){
+                                if(user_search_switch == 0 && !email.equals("") && !password.equals("")){
                                     Toast.makeText(MainActivity.this, "Credential is wrong", Toast.LENGTH_SHORT).show();
                                 }
 

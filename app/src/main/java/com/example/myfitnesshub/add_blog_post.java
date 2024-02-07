@@ -54,8 +54,6 @@ public class add_blog_post extends AppCompatActivity {
     EditText blog_text, blog_description;
 
     DocumentReference DocId;
-
-    String description;
     FirebaseDatabase db;
     Task<Void> reference;
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -80,7 +78,6 @@ public class add_blog_post extends AppCompatActivity {
 
 
         FirebaseApp.initializeApp(add_blog_post.this);
-        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         imageView = findViewById(R.id.image_view);
@@ -187,43 +184,58 @@ public class add_blog_post extends AppCompatActivity {
         });
     }
 
+    String blog_string, description, current_user_name;
     public void uploadImage(){
-        StorageReference myRef = storageReference.child("photos/" + image.getLastPathSegment());
-        myRef.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        current_user_name = GlobalVariable.name;
+        blog_string = blog_text.getText().toString();
+        description = blog_description.getText().toString();
 
-                // uploading image to firebase database
-                myRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        if(uri != null){
-                            photoUrl = uri.toString();
-                            upload_blog_data();
+        if(blog_string.equals("") && description.equals("") && imageView.getDrawable() == null){
+            Toast.makeText(this, "ALl field are mandatory", Toast.LENGTH_SHORT).show();
+        }
+        else if(blog_string.equals("")){
+            Toast.makeText(this, "Enter your Blog title", Toast.LENGTH_SHORT).show();
+        }
+        else if (description.equals("")){
+            Toast.makeText(this, "Enter blog description", Toast.LENGTH_SHORT).show();
+        }
+        else if(imageView.getDrawable() == null){
+            Toast.makeText(this, "please select the Image", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            StorageReference myRef = storageReference.child("photos/" + image.getLastPathSegment());
+            myRef.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    // uploading image to firebase database
+                    myRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            if (uri != null) {
+                                photoUrl = uri.toString();
+                                upload_blog_data();
+                            }
                         }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(add_blog_post.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(add_blog_post.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(add_blog_post.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(add_blog_post.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     }
 
 
     public void upload_blog_data(){
-        String current_user_name = GlobalVariable.name;
-        String blog_string = blog_text.getText().toString();
-        String description = blog_description.getText().toString();
 
         add_post_model blog_model = new add_post_model(blog_string, photoUrl, current_user_name, description);
         reference = db.getReference("blog").child(blog_string).setValue(blog_model).addOnCompleteListener(new OnCompleteListener<Void>() {

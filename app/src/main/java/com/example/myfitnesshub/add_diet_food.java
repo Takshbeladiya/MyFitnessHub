@@ -214,10 +214,25 @@ public class add_diet_food extends AppCompatActivity {
     }
 
     public void upload_blog_data(){
-
-        if(diet_title.getText().toString().equals("") || diet_description.getText().toString().equals("") || diet_calories.getText().toString().equals("") || diet_cook_time.getText().toString().equals("")){
+        if(diet_title.getText().toString().equals("") && diet_description.getText().toString().equals("") && diet_calories.getText().toString().equals("") && diet_cook_time.getText().toString().equals("")  && imageView.getDrawable() == null){
             Toast.makeText(add_diet_food.this, "Fill all details", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else if(imageView.getDrawable() == null){
+            Toast.makeText(add_diet_food.this, "please select the image", Toast.LENGTH_SHORT).show();
+        }
+        else if(diet_title.getText().toString().equals("")){
+            Toast.makeText(add_diet_food.this, "Enter food name", Toast.LENGTH_SHORT).show();
+        }
+        else if(diet_description.getText().toString().equals("") ){
+            Toast.makeText(add_diet_food.this, "Enter food description", Toast.LENGTH_SHORT).show();
+        }
+        else if(diet_calories.getText().toString().equals("")){
+            Toast.makeText(add_diet_food.this, "Enter food calories", Toast.LENGTH_SHORT).show();
+        }
+        else if(diet_cook_time.getText().toString().equals("")){
+            Toast.makeText(add_diet_food.this, "Enter food cook time’", Toast.LENGTH_SHORT).show();
+        }
+        else {
             String current_user_name = GlobalVariable.name;
             String diet_title_txt = diet_title.getText().toString();
             String diet_description_txt = diet_description.getText().toString();

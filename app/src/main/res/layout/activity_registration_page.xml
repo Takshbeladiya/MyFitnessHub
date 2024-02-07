@@ -41,7 +41,7 @@
                 android:color="@color/neon"
                 android:paddingLeft="30dp"
                 android:textColor="@color/white"
-                android:hint="Email"
+                android:hint="Name"
                 android:padding="8dp"
                 android:layout_marginTop="20dp">
             </EditText>

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -75,6 +76,8 @@ public class ShoppingFragment extends Fragment {
 
         recycle_view_data();
 
+        TextView user_title = view.findViewById(R.id.user_title);
+        user_title.setText("Hello "+GlobalVariable.name);
         return view;
     }
 

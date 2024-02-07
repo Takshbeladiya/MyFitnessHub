@@ -11,9 +11,10 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/user_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome Taksh"
+            android:text="Welcome"
             android:textColor="@color/white"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"

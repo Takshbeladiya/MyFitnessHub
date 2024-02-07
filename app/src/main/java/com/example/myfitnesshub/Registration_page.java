@@ -57,13 +57,27 @@ public class Registration_page extends AppCompatActivity {
                 String weight = weight_text.getText().toString();
                 String age = age_text.getText().toString();
 
-                String calories = String.valueOf((10 * Integer.parseInt(weight)) + (6.25 * Integer.parseInt(height)) - (5 * Integer.parseInt(age)) + 700);
-
-
-                if(email.equals("") || password.equals("")){
+                if(email.equals("") || password.equals("") || age.equals("") || height.equals("") || weight.equals("")){
                     Toast.makeText(Registration_page.this, "All fields are Mandatory", Toast.LENGTH_LONG).show();
                 }
+                else if(email.equals("")){
+                    Toast.makeText(Registration_page.this, "Enter your Name", Toast.LENGTH_SHORT).show();
+                }
+                else if(password.equals("")){
+                    Toast.makeText(Registration_page.this, "Enter your Password", Toast.LENGTH_SHORT).show();
+                }
+                else if(age.equals("")){
+                    Toast.makeText(Registration_page.this, "Enter your Age", Toast.LENGTH_SHORT).show();
+                }
+                else if(height.equals("")){
+                    Toast.makeText(Registration_page.this, "Enter your Height", Toast.LENGTH_SHORT).show();
+                }
+                else if(weight.equals("")){
+                    Toast.makeText(Registration_page.this, "Enter your Weight", Toast.LENGTH_SHORT).show();
+                }
                 else{
+                    GlobalVariable.name = email;
+                    String calories = String.valueOf((10 * Integer.parseInt(weight)) + (6.25 * Integer.parseInt(height)) - (5 * Integer.parseInt(age)) + 700);
                     user_data users_data = new user_data(email, password, age, height, weight, calories);
                     db = FirebaseDatabase.getInstance();
                     reference = db.getReference("user_data");
