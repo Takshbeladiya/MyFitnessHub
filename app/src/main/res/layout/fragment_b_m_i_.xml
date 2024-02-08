@@ -300,7 +300,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:progressTint="@color/material_dynamic_neutral90" />
+            android:progressTint="#E1E3E5" />
 
 
     </RelativeLayout>

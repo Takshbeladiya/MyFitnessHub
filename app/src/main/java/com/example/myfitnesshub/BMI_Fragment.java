@@ -175,7 +175,7 @@ public class BMI_Fragment extends Fragment {
                 } else if (mintprogress.equals("0")) {
                     Toast.makeText(getContext(), "Select your height first", Toast.LENGTH_SHORT).show();
                 } else if (intage==0 || intage<0) {
-                    Toast.makeText(getContext(), "Age is incorrenct", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Age is incorrect", Toast.LENGTH_SHORT).show();
                 } else if (intweight==0 || intweight<0) {
                     Toast.makeText(getContext(), "Weight is Incorrect", Toast.LENGTH_SHORT).show();
                 }

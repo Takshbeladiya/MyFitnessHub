@@ -2,20 +2,28 @@ package com.example.myfitnesshub;
 
 public class user_data {
 
-    String email, password, age, height, weight, calories;
+    String email, password, age, height, weight, calories, address;
 
 //    public user_data(String email, String password, String age, String height, String weight) {
 //    }
 
-    public user_data(String email, String password, String age, String height, String weight, String calories){
+    public user_data(String email, String password, String age, String height, String weight, String calories, String address){
         this.email = email;
         this.password = password;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.calories = calories;
+        this.address = address;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getEmail() {
         return email;

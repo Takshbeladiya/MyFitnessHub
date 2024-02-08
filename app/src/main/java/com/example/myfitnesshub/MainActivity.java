@@ -55,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
                                     String email_temp = data.child("email").getValue().toString();
                                     String password_temp = data.child("password").getValue().toString();
 
-                                    if(email.equals("")){
+
+                                    if(email.equals("") && password.equals("")){
+                                        Toast.makeText(MainActivity.this, "All details are mandatory", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else if(email.equals("")){
                                         Toast.makeText(MainActivity.this, "Enter your Name", Toast.LENGTH_SHORT).show();
                                     }
                                     else if(password.equals("")){

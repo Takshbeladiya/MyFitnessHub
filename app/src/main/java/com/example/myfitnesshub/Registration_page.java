@@ -50,14 +50,16 @@ public class Registration_page extends AppCompatActivity {
                 EditText height_text = findViewById(R.id.height_editText);
                 EditText weight_text = findViewById(R.id.weight_editText);
                 EditText age_text = findViewById(R.id.age_editText);
+                EditText address_text = findViewById(R.id.address_editText);
 
                 String email = email_text.getText().toString();
                 String password = password_text.getText().toString();
                 String height = height_text.getText().toString();
                 String weight = weight_text.getText().toString();
                 String age = age_text.getText().toString();
+                String address = address_text.getText().toString();
 
-                if(email.equals("") || password.equals("") || age.equals("") || height.equals("") || weight.equals("")){
+                if(email.equals("") || password.equals("") || age.equals("") || height.equals("") || weight.equals("") || address.equals("")){
                     Toast.makeText(Registration_page.this, "All fields are Mandatory", Toast.LENGTH_LONG).show();
                 }
                 else if(email.equals("")){
@@ -75,10 +77,13 @@ public class Registration_page extends AppCompatActivity {
                 else if(weight.equals("")){
                     Toast.makeText(Registration_page.this, "Enter your Weight", Toast.LENGTH_SHORT).show();
                 }
+                else if(address.equals("")){
+                    Toast.makeText(Registration_page.this, "Enter your Address", Toast.LENGTH_SHORT).show();
+                }
                 else{
                     GlobalVariable.name = email;
                     String calories = String.valueOf((10 * Integer.parseInt(weight)) + (6.25 * Integer.parseInt(height)) - (5 * Integer.parseInt(age)) + 700);
-                    user_data users_data = new user_data(email, password, age, height, weight, calories);
+                    user_data users_data = new user_data(email, password, age, height, weight, calories, address);
                     db = FirebaseDatabase.getInstance();
                     reference = db.getReference("user_data");
                     reference.child(email).setValue(users_data).addOnCompleteListener(new OnCompleteListener<Void>() {
