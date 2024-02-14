@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,12 +39,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class ExericseFragment extends Fragment {
+public class ExericseFragment extends Fragment
+{
 
     public ExericseFragment() {
         // Required empty public constructor
@@ -61,6 +70,7 @@ public class ExericseFragment extends Fragment {
     FragmentActivity referenceActivity;
 
     exercise_adapter mainAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +85,12 @@ public class ExericseFragment extends Fragment {
 
         // All exercise Recycle view
         recycle_view_data();
+
+        MaterialCalendarView mcv = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+
+        mcv.state().edit()
+                .setCalendarDisplayMode(CalendarMode.WEEKS)
+                .commit();
 
         return view;
     }
@@ -106,4 +122,7 @@ public class ExericseFragment extends Fragment {
         super.onStop();
         mainAdapter.stopListening();
     }
+
+
+
 }

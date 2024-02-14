@@ -39,7 +39,6 @@ public class shopping_product_info extends Fragment {
     String title, url, rating, color, description;
     int price;
 
-
     public shopping_product_info(String title, String url, String rating, String color, String description, int price) {
         this.title = title;
         this.url = url;

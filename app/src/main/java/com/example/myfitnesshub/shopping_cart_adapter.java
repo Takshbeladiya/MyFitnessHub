@@ -79,12 +79,33 @@ public class shopping_cart_adapter extends FirebaseRecyclerAdapter<shopping_cart
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.update_icon:
-                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                                activity.getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(, new shopping_product_info())
-                                        .addToBackStack(null)
-                                        .commit();
+                                FirebaseDatabase.getInstance().getReference().child("shopping").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for(DataSnapshot data:snapshot.getChildren()){
+                                            String product_title = data.child("title").getValue().toString();
+                                            if(product_title.equals(model.getProduct())){
+                                                String url = data.child("url").getValue().toString();
+                                                String color = data.child("color").getValue().toString();
+                                                String description = data.child("description").getValue().toString();
+                                                String rating = data.child("rating").getValue().toString();
+                                                int price = Integer.parseInt(data.child("price").getValue().toString());
+
+                                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                                activity.getSupportFragmentManager()
+                                                        .beginTransaction()
+                                                        .replace(R.id.shopping_cart_wrapper, new shopping_product_info(product_title, url, rating, color, description, price))
+                                                        .addToBackStack(null)
+                                                        .commit();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
 
                                 Toast.makeText(view.getContext(), "update", Toast.LENGTH_SHORT).show();
                                 return true;

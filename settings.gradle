@@ -10,7 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-
+        jcenter()
         // slider dependence
         maven { url "https://jitpack.io" }
     }

@@ -33,7 +33,6 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
         Glide.with(holder.exercise_img.getContext())
                 .load(model.getImage_url())
                 .placeholder(com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_dark)
-                .circleCrop()
                 .error(R.drawable.error_image)
                 .into(holder.exercise_img);
 

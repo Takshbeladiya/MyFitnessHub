@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.myfitnesshub"
-        minSdk 24
+        minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -52,6 +52,10 @@ dependencies {
     // new
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
 
+    // calender
+
+    // The view calendar library
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
