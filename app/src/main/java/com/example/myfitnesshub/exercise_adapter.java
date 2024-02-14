@@ -1,11 +1,13 @@
 package com.example.myfitnesshub;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,15 +28,15 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull exercise_model model) {
-        holder.title_txt.setText(model.getTitle());
-        holder.description_txt.setText(model.getDescription());
-        holder.exercise_calories.setText(String.valueOf(model.getCalories()));
-        Glide.with(holder.card_img.getContext())
-                .load(model.getUrl())
+        holder.name_txt.setText(model.getName());
+        holder.time_txt.setText(model.getTime());
+        Glide.with(holder.exercise_img.getContext())
+                .load(model.getImage_url())
                 .placeholder(com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_dark)
                 .circleCrop()
                 .error(R.drawable.error_image)
-                .into(holder.card_img);
+                .into(holder.exercise_img);
+
 
         holder.base_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +44,7 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.exercise_wrapper, new exercise_workout_info(model.getTitle(), "exercise"))
+                        .replace(R.id.exercise_wrapper, new exercise_workout_info(model.getName(), model.getImage_url(), model.getExercise_type(), model.getType()))
                         .addToBackStack(null)
                         .commit();
             }
@@ -61,17 +63,16 @@ public class exercise_adapter extends FirebaseRecyclerAdapter<exercise_model, ex
     public class myViewHolder extends RecyclerView.ViewHolder{
 
         RelativeLayout base_card;
-        ImageView card_img;
-        TextView title_txt, description_txt, exercise_calories;
+        ImageView exercise_img;
+        TextView name_txt, time_txt;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            card_img = (ImageView)itemView.findViewById(R.id.card_img);
-            description_txt = itemView.findViewById(R.id.description_txt);
-            title_txt = itemView.findViewById(R.id.title_txt);
+            name_txt = itemView.findViewById(R.id.name_txt);
             base_card = itemView.findViewById(R.id.base_card);
-            exercise_calories = itemView.findViewById(R.id.exercise_calories);
+            time_txt = itemView.findViewById(R.id.time_txt);
+            exercise_img = itemView.findViewById(R.id.exercise_img);
         }
     }
 }

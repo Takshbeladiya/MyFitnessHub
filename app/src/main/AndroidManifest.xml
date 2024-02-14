@@ -14,9 +14,18 @@
         android:theme="@style/Theme.MyFitnessHub"
         tools:targetApi="31">
         <activity
+            android:name=".register_splash_screen"
+            android:exported="false" />
+        <activity
+            android:name=".register_calories"
+            android:exported="false" />
+        <activity
+            android:name=".register_goal"
+            android:exported="false" />
+        <activity
             android:name=".splash_screen"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar" >
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +34,7 @@
         </activity>
         <activity
             android:name=".Splashact"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".diet_edit"
             android:exported="false"
@@ -59,9 +67,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.Design.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Design.NoActionBar" />
     </application>
 
 </manifest>

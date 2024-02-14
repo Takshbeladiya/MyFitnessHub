@@ -64,59 +64,7 @@
                 android:layout_marginTop="20dp">
             </EditText>
 
-            <EditText
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:id="@+id/age_editText"
-                android:hint="Enter Age"
-                android:background="@null"
-                android:textColorHint="@color/white"
-                android:fontFamily="sans-serif-light"
-                android:textSize="27dp"
-                android:radius="25dp"
-                android:shape="rectangle"
-                android:color="@color/neon"
-                android:paddingLeft="30dp"
-                android:textColor="@color/white"
-                android:padding="8dp"
-                android:layout_marginTop="20dp">
-            </EditText>
 
-            <EditText
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:id="@+id/height_editText"
-                android:hint="Enter Height in cm"
-                android:background="@null"
-                android:textColorHint="@color/white"
-                android:fontFamily="sans-serif-light"
-                android:textSize="27dp"
-                android:radius="25dp"
-                android:shape="rectangle"
-                android:color="@color/neon"
-                android:paddingLeft="30dp"
-                android:textColor="@color/white"
-                android:padding="8dp"
-                android:layout_marginTop="20dp">
-            </EditText>
-
-            <EditText
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:id="@+id/weight_editText"
-                android:hint="Enter Weight in kg"
-                android:background="@null"
-                android:textColorHint="@color/white"
-                android:fontFamily="sans-serif-light"
-                android:textSize="27dp"
-                android:radius="25dp"
-                android:shape="rectangle"
-                android:color="@color/neon"
-                android:paddingLeft="30dp"
-                android:textColor="@color/white"
-                android:padding="8dp"
-                android:layout_marginTop="20dp">
-            </EditText>
 
             <EditText
                 android:layout_width="350dp"

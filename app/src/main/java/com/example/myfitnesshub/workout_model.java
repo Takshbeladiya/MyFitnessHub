@@ -1,18 +1,19 @@
 package com.example.myfitnesshub;
 
-public class exercise_model {
-    String image_url, name, time, exercise_type, type;
+public class workout_model {
 
-    exercise_model(){
+    String image_url, name, duration, exercise_type, description;
+
+    workout_model(){
         //zero hour constructor for firebase
     }
 
-    public exercise_model(String image_url, String name, String time, String exercise_type, String type) {
+    public workout_model(String image_url, String name, String duration, String exercise_type, String description) {
         this.image_url = image_url;
         this.name = name;
-        this.time = time;
+        this.duration = duration;
         this.exercise_type = exercise_type;
-        this.type = type;
+        this.description = description;
     }
 
     public String getImage_url() {
@@ -31,12 +32,12 @@ public class exercise_model {
         this.name = name;
     }
 
-    public String getTime() {
-        return time;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public String getExercise_type() {
@@ -47,11 +48,11 @@ public class exercise_model {
         this.exercise_type = exercise_type;
     }
 
-    public String getType() {
-        return type;
+    public String getDescription() {
+        return description;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

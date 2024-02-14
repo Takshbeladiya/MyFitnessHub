@@ -2,35 +2,37 @@ package com.example.myfitnesshub;
 
 public class user_data {
 
-    String email, password, age, height, weight, calories, address;
+    String name, password, address, goal, date;
+    int age;
+    float calories, weight, height;
 
-//    public user_data(String email, String password, String age, String height, String weight) {
-//    }
 
-    public user_data(String email, String password, String age, String height, String weight, String calories, String address){
-        this.email = email;
+    public user_data(String name, String password, String address, String goal, String date, int age, float calories, float weight, float height) {
+        this.name = name;
         this.password = password;
+        this.address = address;
+        this.goal = goal;
+        this.date = date;
         this.age = age;
-        this.height = height;
-        this.weight = weight;
         this.calories = calories;
-        this.address = address;
+        this.weight = weight;
+        this.height = height;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDate() {
+        return date;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -41,35 +43,51 @@ public class user_data {
         this.password = password;
     }
 
-    public String getAge() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public String getCalories() {
+    public float getCalories() {
         return calories;
     }
 
-    public void setCalories(String calories) {
+    public void setCalories(float calories) {
         this.calories = calories;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
     }
 }

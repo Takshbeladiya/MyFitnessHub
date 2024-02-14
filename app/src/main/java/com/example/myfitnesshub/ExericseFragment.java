@@ -20,10 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
@@ -35,6 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,13 +56,11 @@ public class ExericseFragment extends Fragment {
 
     }
 
-    ImageSlider main_slider;
-    FragmentActivity referenceActivity;
     View view;
     RecyclerView recyclerView;
-    exercise_adapter mainAdapter;
-    SearchView searchView;
+    FragmentActivity referenceActivity;
 
+    exercise_adapter mainAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,8 +72,6 @@ public class ExericseFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_exericse, container,
                 false);
 
-        // code of fetching and adapting data to slider
-        slider_activity_data();
 
         // All exercise Recycle view
         recycle_view_data();
@@ -79,45 +80,20 @@ public class ExericseFragment extends Fragment {
     }
 
     public void recycle_view_data(){
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManagerWrapper(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
-        FirebaseRecyclerOptions<exercise_model> options =
+        FirebaseRecyclerOptions<exercise_model> options_begineer =
                 new FirebaseRecyclerOptions.Builder<exercise_model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("exercise"), exercise_model.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("exercise_type"), exercise_model.class)
                         .build();
 
-        searchView = (SearchView) view.findViewById(R.id.search_view);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                txtSearch(query);
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String query) {
-                txtSearch(query);
-                return false;
-            }
-        });
-
-        mainAdapter = new exercise_adapter(options);
+        mainAdapter = new exercise_adapter(options_begineer);
         recyclerView.setAdapter(mainAdapter);
     }
 
-
-    private void txtSearch(String Str){
-        FirebaseRecyclerOptions<exercise_model> options =
-                new FirebaseRecyclerOptions.Builder<exercise_model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("exercise").orderByChild("title").startAt(Str).endAt(Str+"~"), exercise_model.class)
-                        .build();
-
-        mainAdapter = new exercise_adapter(options);
-        mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);
-    }
 
     @Override
     public void onStart() {
@@ -129,54 +105,5 @@ public class ExericseFragment extends Fragment {
     public void onStop() {
         super.onStop();
         mainAdapter.stopListening();
-    }
-
-    public void slider_activity_data(){
-        main_slider = (ImageSlider) view.findViewById(R.id.image_slider);
-        final List<SlideModel> remote_image = new ArrayList<>();
-
-        FirebaseDatabase.getInstance().getReference().child("exercise_plan")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        // this loop will take all children from database itinerary
-                        for(DataSnapshot data:snapshot.getChildren()){
-
-                            remote_image.add(new SlideModel(data.child("url").getValue().toString(),
-                                    data.child("title").getValue().toString(),
-                                    ScaleTypes.FIT
-                            ));
-                        }
-                        main_slider.setImageList(remote_image, ScaleTypes.FIT);
-
-                        main_slider.setItemClickListener(new ItemClickListener() {
-                            @Override
-                            public void onItemSelected(int i) {
-                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                                activity.getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.exercise_wrapper, new exercise_workout_info(remote_image.get(i).getTitle().toString(), "exercise_plan"))
-                                        .addToBackStack(null)
-                                        .commit();
-                            }
-
-                            @Override
-                            public void doubleClick(int i) {
-                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                                activity.getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.exercise_wrapper, new exercise_workout_info(remote_image.get(i).getTitle().toString(), "exercise_plan"))
-                                        .addToBackStack(null)
-                                        .commit();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        // Leave empty
-                    }
-                });
     }
 }
