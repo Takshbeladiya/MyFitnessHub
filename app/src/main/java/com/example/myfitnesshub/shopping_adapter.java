@@ -15,10 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class shopping_adapter extends FirebaseRecyclerAdapter<shopping_model, shopping_adapter.myViewHolder> {
 
@@ -26,7 +22,6 @@ public class shopping_adapter extends FirebaseRecyclerAdapter<shopping_model, sh
         super(options);
     }
 
-    int qty;
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull shopping_model model) {
         holder.shopping_title.setText(model.getTitle());
@@ -42,40 +37,12 @@ public class shopping_adapter extends FirebaseRecyclerAdapter<shopping_model, sh
             @Override
             public void onClick(View view) {
 
-                qty = 0;
-
-                FirebaseDatabase.getInstance().getReference().child("shopping_cart")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.hasChild(GlobalVariable.name+"_"+model.getTitle())){
-                            qty = Integer.parseInt(snapshot.child(GlobalVariable.name+"_"+model.getTitle()).child("quantity").getValue().toString());
-                            AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                            activity.getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.shopping_wrapper, new shopping_product_info(model.getTitle(), model.getUrl(), model.getRating(), model.getColor(), model.getDescription(), model.getPrice(), qty))
-                                    .addToBackStack(null)
-                                    .commit();
-                        }
-                        else {
-                            qty = 0;
-                            AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                            activity.getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.shopping_wrapper, new shopping_product_info(model.getTitle(), model.getUrl(), model.getRating(), model.getColor(), model.getDescription(), model.getPrice(), qty))
-                                    .addToBackStack(null)
-                                    .commit();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        // do not delete
-                    }
-                });
-
-
-
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.shopping_wrapper, new shopping_product_info(model.getTitle(), model.getUrl(), model.getRating(), model.getColor(), model.getDescription(), model.getPrice()))
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

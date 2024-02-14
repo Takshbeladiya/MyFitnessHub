@@ -37,17 +37,16 @@ public class shopping_product_info extends Fragment {
     }
 
     String title, url, rating, color, description;
-    int price, qty;
+    int price;
 
 
-    public shopping_product_info(String title, String url, String rating, String color, String description, int price, int qty) {
+    public shopping_product_info(String title, String url, String rating, String color, String description, int price) {
         this.title = title;
         this.url = url;
         this.color = color;
         this.description = description;
         this.price = price;
         this.rating = rating;
-        this.qty = qty;
     }
 
 
@@ -76,7 +75,7 @@ public class shopping_product_info extends Fragment {
 
     Button add_to_card_btn, show_card_btn;
 
-
+    int qty;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,7 +100,6 @@ public class shopping_product_info extends Fragment {
         product_rating.setText(rating);
         product_color.setText(color);
         product_description.setText(description);
-        quantity_txt.setText(String.valueOf(qty));
 
         Glide.with(getContext())
                 .load(url)
@@ -114,11 +112,11 @@ public class shopping_product_info extends Fragment {
     }
 
     public void add_remove_btn(){
-//        qty = Integer.valueOf(quantity_txt.getText().toString());
+        qty = Integer.valueOf(quantity_txt.getText().toString());
 
 
 //        FirebaseDatabase.getInstance().getReference().child("shopping_cart")
-//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                .addValueEventListener(new ValueEventListener() {
 //                    @Override
 //                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                        if(snapshot.hasChild(GlobalVariable.name+"_"+title)){
@@ -134,6 +132,7 @@ public class shopping_product_info extends Fragment {
 //                        // do not delete
 //                    }
 //                });
+
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
