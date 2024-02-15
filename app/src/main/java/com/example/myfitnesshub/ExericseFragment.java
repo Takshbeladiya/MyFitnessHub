@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -39,9 +40,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -69,6 +67,7 @@ public class ExericseFragment extends Fragment
     RecyclerView recyclerView;
     FragmentActivity referenceActivity;
 
+    RelativeLayout today_card;
     exercise_adapter mainAdapter;
 
     @Override
@@ -86,13 +85,25 @@ public class ExericseFragment extends Fragment
         // All exercise Recycle view
         recycle_view_data();
 
-        MaterialCalendarView mcv = (MaterialCalendarView) view.findViewById(R.id.calendarView);
-
-        mcv.state().edit()
-                .setCalendarDisplayMode(CalendarMode.WEEKS)
-                .commit();
+        // Today's Exercise
+        exercise_for_now();
 
         return view;
+    }
+
+    public void exercise_for_now(){
+        today_card = (RelativeLayout) view.findViewById(R.id.today_card);
+        today_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity)getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.exercise_wrapper, new today_workout_page())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     public void recycle_view_data(){
